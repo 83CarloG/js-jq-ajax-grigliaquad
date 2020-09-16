@@ -1,0 +1,51 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+html {
+	font-family: 'Press Start 2P', cursive;
+}
+.container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.rules {
+	width: 600px;
+	margin-bottom: 20px;
+	padding: 10px;
+	cursor: no-drop;
+}
+.title {
+	font-size: 24px;
+}
+.row {
+	display: flex;
+	width: 600px;
+	height: 100px;
+	border-right: 1px solid #000;
+	border-left: 1px solid #000;
+}
+.row:first-of-type {
+	border-top: 1px solid #000;
+}
+.row:last-child {
+	border-bottom: 1px solid #000;
+}
+.col-2 {
+	width: 100px;
+	height: 100%;
+	border: 1px solid #000;
+}
+.green {
+	background-color: green;
+	color: inherit;
+}
+.yellow {
+	background-color: yellow;
+	color: inherit;
+}
