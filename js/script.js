@@ -3,41 +3,33 @@ Generare una griglia 6x6 (36 boxes), ad ogni click parte una richiesta AJAX che 
 Se è <= 5 il quadrato diventa giallo, se è > di 5 il quadrato diventa verde.
 Il numero ottenuto appare al centro del quadrato.
 */
-$(document).ready(function	() {
-	function callRandomNumber () {
-		$.ajax({
-		url: 'https://flynn.boolean.careers/exercises/api/random/int',
-		type: 'GET',
-		success: function (data, stato) {
-			var number = data.response;
-			return number;
-		},
-		error: function (richiesta, stato, errore) {
-			alert('E\' avvenuto un errore' + errore);
-		}
-	});
-	}
 
-	var square = $('.col-2');
-	$(this).click(function	() {
-		var pippo = callRandomNumber();
-		// perchè pippo non mi dA IL VALORE DI DATA.RESPONSE
-		console.log(pippo);
+$(document).ready(function	() {
+	// evento click sul quadrato
+	$('.col-2').click(function	() {
+	// memorizzo il quadrato cliccato
+		var square = $(this);
+	// se è già giallo o verde non faccio nulla
+	if (!(square.hasClass('yellow')) && !(square.hasClass('green')))
+	// chiamata all'endpoint
+		$.ajax({
+			url: 'https://flynn.boolean.careers/exercises/api/random/int',
+			type: 'GET',
+			success: function (data, stato) {
+				// memorizzo il dato che mi serve
+				var randomNumber = data.response;
+				// attribuisco la classe al quadrato
+				if (data.response <= 5) {
+					square.addClass('yellow');
+					} else if (data.response > 5) {
+						square.addClass('green');
+					}
+					// stampo il numero nel quadrato
+					square.children('p').text(data.response);
+				},
+			error: function (richiesta, stato, errori) {
+				alert('E\' avvenuto un\'errore' + errori)
+			}
+		});
 	});
 });
-
-
-// TEMPLATE
-// 	// Getto il mio template
-// 	var source = $('#entry-template').html();
-// 	// Lo compilo
-// 	var template = Handlebars.compile(source);
-// 	// Inserisco un contenuto
-// 	var context = {
-// 		//
-// 	};
-// 	// Aggancio il contenuto al template
-// 	var html = template(context);
-// 	// Lo innietto nell'html
-// 	var app = $('#app').append(html);
-// });

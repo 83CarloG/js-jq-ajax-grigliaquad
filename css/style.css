@@ -37,6 +37,9 @@ html {
 	border-bottom: 1px solid #000;
 }
 .col-2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100px;
 	height: 100%;
 	border: 1px solid #000;
